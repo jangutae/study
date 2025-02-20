@@ -15,14 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.study2.user.entity.User;
+import com.example.study2.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
+	final UserService userService;
+
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
 	List<User> userList = new ArrayList<>();
-	ObjectMapper mapper = new ObjectMapper();
 
 	@GetMapping("/{userId}")
 	public User getUser(@PathVariable("userId") Integer userId) {
@@ -32,13 +38,13 @@ public class UserController {
 
 	@GetMapping
 	public List<User> getAllUsers() {
-		return userList;
+		return userService.readAllUser();
 	}
 
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		this.userList.add(user);
-		return ResponseEntity.status(HttpStatus.CREATED).body(user);
+		User response = userService.createUser(user);
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
 	@PutMapping("/{userId}")
