@@ -31,14 +31,15 @@ public class UserController {
 	List<User> userList = new ArrayList<>();
 
 	@GetMapping("/{userId}")
-	public User getUser(@PathVariable("userId") Integer userId) {
+	public ResponseEntity<User> getUser(@PathVariable("userId") Integer userId) {
 		// userId를 사용한 로직 처리
-		return this.userList.get(userId);
+		return ResponseEntity.ok().body(userService.getUser(userId));
 	}
 
 	@GetMapping
-	public List<User> getAllUsers() {
-		return userService.readAllUser();
+	public ResponseEntity<List<User>> getAllUsers() {
+
+		return ResponseEntity.ok().body(userService.readAllUser());
 	}
 
 	@PostMapping

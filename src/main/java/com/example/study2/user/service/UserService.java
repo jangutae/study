@@ -23,4 +23,8 @@ public class UserService {
 	public User createUser(User savedUser) {
 		return userRepository.createUser1(savedUser);
 	}
+
+	public User getUser(Integer userId) {
+		return null;
+	}
 }
