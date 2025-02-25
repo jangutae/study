@@ -18,4 +18,18 @@ public class User {
 		this.name = name;
 		this.age = age;
 	}
+
+	public User(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
+
