@@ -23,7 +23,15 @@ public class UserRepository {
 
 	public List<User> getAllUsers() {
 		String sql = "SELECT * FROM users ORDER BY id DESC";
-		return jdbcTemplate.query(sql, new RowMapper<User>() {
+		return jdbcTemplate.query(sql, (resultSet, rowNum) -> new User(
+				resultSet.getLong("id"),
+				resultSet.getString("name"),
+				resultSet.getInt("age")));
+	}
+
+	public User getUser(Integer userId) {
+		String sql = "SELECT * FROM users WHERE id = ?";
+		return jdbcTemplate.queryForObject(sql, new Object[]{userId} , new RowMapper<User>() {
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 				User user = new User();
