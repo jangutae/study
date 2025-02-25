@@ -26,8 +26,7 @@ public class UserRepository {
 		return jdbcTemplate.query(sql, (resultSet, rowNum) -> new User(
 				resultSet.getLong("id"),
 				resultSet.getString("name"),
-				resultSet.getInt("age")
-			));
+				resultSet.getInt("age")));
 	}
 
 	public User getUser(Integer userId) {
