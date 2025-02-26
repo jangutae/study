@@ -1,7 +1,9 @@
-package com.example.study2.user.controller;
+package com.example.study2.basic1.user.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,18 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.study2.user.entity.User;
-import com.example.study2.user.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.study2.basic1.user.entity.User;
+import com.example.study2.basic1.user.service.UserService;
+import com.example.study2.basic1.util.SessionManager;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/v1/users")
 public class UserController {
 
-	final UserService userService;
+	public final UserService userService;
 
 	public UserController(UserService userService) {
 		this.userService = userService;
@@ -55,6 +56,8 @@ public class UserController {
 		this.userList.add(userId, user);
 		return this.userList.get(userId);
 	}
+
+
 }
 
 
