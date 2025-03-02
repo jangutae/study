@@ -1,4 +1,4 @@
-package com.example.study2.s3;
+package com.example.study2.basic1.s3;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

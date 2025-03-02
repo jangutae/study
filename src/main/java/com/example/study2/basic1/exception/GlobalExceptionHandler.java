@@ -1,4 +1,4 @@
-package com.example.study2.exception;
+package com.example.study2.basic1.exception;
 
 
 import org.springframework.http.ResponseEntity;
@@ -12,6 +12,8 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(exception = {UserException.class})
 	public ResponseEntity<ErrorResponseDto> handlerCustomException(UserException exception) {
 
-		return ResponseEntity.status(ErrorResponseDto.toCode(exception)).body(ErrorResponseDto.toDto(exception));
+		return ResponseEntity
+			.status(ErrorResponseDto.toCode(exception))
+			.body(ErrorResponseDto.toDto(exception));
 	}
 }

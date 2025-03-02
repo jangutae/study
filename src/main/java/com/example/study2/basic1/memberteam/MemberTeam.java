@@ -1,7 +1,7 @@
-package com.example.study2.memberteam;
+package com.example.study2.basic1.memberteam;
 
-import com.example.study2.member.Member;
-import com.example.study2.team.Team;
+import com.example.study2.basic1.member.Member;
+import com.example.study2.basic1.team.Team;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -15,7 +15,7 @@ import lombok.Getter;
 
 @Entity
 @Getter
-@Table(name = "member_teams")
+@Table(name = "member_team")
 public class MemberTeam {
 
 	@Id
