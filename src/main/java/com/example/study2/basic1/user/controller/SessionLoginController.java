@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.study2.basic1.exception.UserErrorCode;
+import com.example.study2.basic1.exception.UserException;
 import com.example.study2.basic1.user.dto.UserDTO;
 import com.example.study2.basic1.user.entity.User;
 import com.example.study2.basic1.user.service.UserService;
@@ -34,16 +36,17 @@ public class SessionLoginController {
 
 
 	@GetMapping("/session")
-	public User test(HttpServletRequest request) {
+	public ResponseEntity<User> test(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 
 		if (session == null) {
-			throw new IllegalArgumentException("session is null");
+			throw new UserException(UserErrorCode.NOT_EXIST_SESSION);
 		}
 
 		String sessionUuid = session.getAttribute(MY_SESSION).toString();
+		User user = userService.checkUserBySession(sessionUuid);
 
-		return userService.checkUserBySession(sessionUuid);
+		return ResponseEntity.ok().body(user);
 	}
 
 	@PostMapping("/session")

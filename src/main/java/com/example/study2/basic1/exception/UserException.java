@@ -1,6 +1,4 @@
-package com.example.study2.exception;
-
-import org.springframework.http.HttpStatus;
+package com.example.study2.basic1.exception;
 
 import lombok.Getter;
 

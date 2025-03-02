@@ -1,9 +1,9 @@
-package com.example.study2.team;
+package com.example.study2.basic1.member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.study2.memberteam.MemberTeam;
+import com.example.study2.basic1.memberteam.MemberTeam;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -16,8 +16,8 @@ import lombok.Getter;
 
 @Entity
 @Getter
-@Table(name = "teams")
-public class Team {
+@Table(name = "members")
+public class Member {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +25,12 @@ public class Team {
 
 	String name;
 
-	// Team Entity 와 1 : N 연관관계 시 맵핑
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "member_id")
-	// Member member;
+	Integer age;
 
-	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+	// Team Entity 와 1 : N 연관관계 시 맵핑
+	// @OneToMany(mappedBy = "member")
+	// List<Team> teamList = new ArrayList<>();
+
+	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
 	List<MemberTeam> memberTeamList = new ArrayList<>();
 }
