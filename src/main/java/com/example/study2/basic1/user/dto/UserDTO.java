@@ -2,7 +2,6 @@ package com.example.study2.basic1.user.dto;
 
 import com.example.study2.basic1.user.entity.User;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 

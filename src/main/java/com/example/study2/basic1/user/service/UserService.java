@@ -62,8 +62,15 @@ public class UserService {
 		return jdbcTemplateUserRepository.getAllUsers();
 	}
 
-	public User createUser(User savedUser) {
-		return jdbcTemplateUserRepository.createUser1(savedUser);
+	public User createUser(UserDTO userdto) {
+
+		User user = User.builder()
+			.email(userdto.getEmail())
+			.password(userdto.getPassword())
+			.nickname(userdto.getNickname())
+			.build();
+
+		return userRepository.save(user);
 	}
 
 	public User getUser(Integer userId) {
@@ -100,4 +107,20 @@ public class UserService {
 		return userRepository.findByUuid(Uuid).orElseThrow(() -> new UserException(UserErrorCode.NOT_FOUND_USER));
 	}
 
+	@Transactional
+	public User updatedUser(Long userId, UserDTO userdto) {
+		User findUser = userRepository.findById(userId).orElseThrow(() -> new UserException(UserErrorCode.NOT_FOUND_USER));
+
+		findUser.updateUser(userdto);
+
+		return findUser;
+	}
+
+	public List<User> findAllUsers() {
+		return userRepository.findAll();
+	}
+
+	public User findUser(Long userId) {
+		return userRepository.findById(userId).orElseThrow(() -> new UserException(UserErrorCode.NOT_FOUND_USER));
+	}
 }
