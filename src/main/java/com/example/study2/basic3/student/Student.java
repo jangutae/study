@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 	))
 @Getter
 @NoArgsConstructor
-// @Table(name = "students")
+@Table(name = "students")
 public class Student {
 
 	@Id
