@@ -123,4 +123,14 @@ public class UserService {
 	public User findUser(Long userId) {
 		return userRepository.findById(userId).orElseThrow(() -> new UserException(UserErrorCode.NOT_FOUND_USER));
 	}
+
+	public void deletedUser(Long userId, String email) {
+		boolean isPresent = userRepository.existsByEmail(email);
+
+		if (!isPresent) {
+			throw new UserException(UserErrorCode.ALREADY_DELETED);
+		}
+
+		userRepository.deleteById(userId);
+	}
 }
