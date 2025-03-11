@@ -22,6 +22,7 @@ public class CustomStudentSerializer extends StdSerializer<Student> {
 		jsonGenerator.writeStartObject();
 		jsonGenerator.writeNumberField("age ", student.getId());
 		jsonGenerator.writeStringField("teacher ", student.getName());
+		// jsonGenerator.writeStringField("uuid ", student.getUuid());
 		jsonGenerator.writeEndObject();
 	}
 }
